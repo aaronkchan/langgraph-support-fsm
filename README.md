@@ -4,16 +4,16 @@ A stateful support workflow engine engineered to eliminate LLM hallucination ris
 
 
 # Core Architecture
+```text
                  [ User Input ]
                        │
                        ▼
              [ Classify Intent ]
               /        │        \
-             /         │         \
-    (Order Status)     (FAQ)     (Refund)
+   (Order Status)    (FAQ)    (Refund)
          │             │          │
          ▼             ▼          ▼
-    [ Order Node ]  [ FAQ Node ]  [ Evaluate Risk Threshold ]
+   [ Order Node ]  [ FAQ Node ]  [ Evaluate Risk Threshold ]
          │             │          /                       \
          │             │   (Amount <= $50)          (Amount > $50)
          │             │         │                        │
@@ -30,7 +30,7 @@ A stateful support workflow engine engineered to eliminate LLM hallucination ris
           \            │        /                        /
            ▼           ▼       ▼                        ▼
                         [ END / Response ]
-
+```
 
 # Key Features
 
@@ -40,27 +40,40 @@ A stateful support workflow engine engineered to eliminate LLM hallucination ris
 - Audit-Ready State Schema: Tracks message history, intent classification, transaction values, and approval statuses across a strictly typed state dictionary.
 
 # Project Structure
+
+```text
 langgraph-support-fsm/
 ├── README.md
 ├── requirements.txt
 ├── state_machine.py     # Graph definition, state schema, and HITL breakpoints
 └── main.py              # Interactive CLI scenario runner
+```
 
 # Architecture & Features
 - **Deterministic Intent Routing:** Replaces open-ended generation with strict state transitions for critical customer journeys (Order Status, FAQ, Refunds).
 - **Risk Gate Interception:** Automatically evaluates action thresholds; operations exceeding safety limits (e.g., refunds >$50) trigger immediate state suspension.
 - **Stateful Checkpointing:** Leverages LangGraph memory checkpoints to hold thread execution state indefinitely until human authorization is granted.
 
+## Quickstart
 
+### Prerequisites
+* Python 3.10+
+* Virtual environment (recommended)
 
-# Quickstart
-## Prerequisites
-- Python 3.10+
-- Virtual environment (recommended)
+### Installation
 
-# Installation
-## Clone the repository
-git clone https://github.com/aaronkchan/langgraph-support-fsm.git
+1. Clone the repository:
+```bash
+git clone [https://github.com/aaronkchan/langgraph-support-fsm.git](https://github.com/aaronkchan/langgraph-support-fsm.git)
 cd langgraph-support-fsm
-## Install dependencies
+```
+
+2. Install dependencies:
+```bash
 pip install -r requirements.txt
+```
+
+### Run Demo
+```bash
+python main.py
+```
