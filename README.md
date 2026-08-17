@@ -10,10 +10,10 @@ A stateful support workflow engine engineered to eliminate LLM hallucination ris
              [ Classify Intent ]
               /        │        \
              /         │         \
-  (Order Status)     (FAQ)     (Refund)
+    (Order Status)     (FAQ)     (Refund)
          │             │          │
          ▼             ▼          ▼
-   [ Order Node ]  [ FAQ Node ]  [ Evaluate Risk Threshold ]
+    [ Order Node ]  [ FAQ Node ]  [ Evaluate Risk Threshold ]
          │             │          /                       \
          │             │   (Amount <= $50)          (Amount > $50)
          │             │         │                        │
